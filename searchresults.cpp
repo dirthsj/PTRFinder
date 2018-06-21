@@ -64,7 +64,7 @@ void SearchResults::on_excelButton_clicked()
 }
 
 void SearchResults::getExcelFilePath( QDir searchPath ){
-    for( QFileInfo file : searchPath.entryInfoList() ){
+    for( QFileInfo file : searchPath.entryInfoList( QDir::NoDotAndDotDot | QDir::AllEntries ) ){
         if( file.suffix() == "xls" ){
            QAxObject* workbook = workbooks->querySubObject( "Open(const QString&)", file.absoluteFilePath() );
            QAxObject* sheets = workbook->querySubObject( "Worksheets" );
